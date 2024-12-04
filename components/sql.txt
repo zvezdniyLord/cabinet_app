@@ -1,0 +1,36 @@
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    fio VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    position VARCHAR(100) NOT NULL,
+    company VARCHAR(150) NOT NULL,
+    fieldActivity VARCHAR(150) NOT NULL,
+    city VARCHAR(100) NOT NULL,
+    tel VARCHAR(30) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+//вариант 15 октября
+CREATE TABLE emails (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id),
+    recipient_email TEXT NOT NULL,
+    subject TEXT NOT NULL,
+    message TEXT NOT NULL,
+    sent_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    is_deleted BOOLEAN DEFAULT FALSE
+);
+
+CREATE TABLE emails (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id),
+    recipient_email TEXT NOT NULL,
+    subject TEXT NOT NULL,
+    message TEXT NOT NULL,
+    sent_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    is_deleted BOOLEAN DEFAULT FALSE,
+    sender_name TEXT NOT NULL,
+    sender_email TEXT NOT NULL
+);
+
